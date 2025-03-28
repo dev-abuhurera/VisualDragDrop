@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Hand Gesture Volume Control ✋🔊
 
 
@@ -85,3 +86,7 @@ Developed by [Your Name]
 Powered by OpenCV, MediaPipe, and pycaw
 
 🌟 Star this repo if you find it useful!
+=======
+# VisualDragDrop
+ VisualDragDrop is an intuitive interface that lets you manipulate on-screen elements using natural hand movements. Simply pinch and drag with your fingers to interact with objects—no touchscreen or mouse required.    Perfect for:   • Interactive installations   • Touchless kiosks   • Accessible computing   • Creative applications   
+>>>>>>> 7a8055510c1aa544cecad7f496a7ed44b58c513f
