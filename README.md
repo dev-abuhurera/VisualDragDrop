@@ -1,92 +1,88 @@
-<<<<<<< HEAD
-Hand Gesture Volume Control ✋🔊
+Visual Drag-and-Drop with Hand Tracking
 
+This project implements hand gesture-based drag-and-drop using OpenCV and hand landmark detection. Users can pinch and drag semi-transparent boxes on the screen using their fingers, with real-time visual feedback.
 
-📌 Project Overview
-This application uses OpenCV and MediaPipe to detect hand movements and adjust your computer's volume based on the distance between your thumb and index finger. Perfect for hands-free volume control!
+📌 Features
+✅ Hand Tracking – Detects hand landmarks using MediaPipe.
+✅ Pinch-to-Drag – Uses finger distance to detect pinch gestures.
+✅ Semi-Transparent Boxes – Draggable UI elements with alpha blending.
+✅ Debounce Logic – Prevents false triggers by requiring sustained pinch.
+✅ Multi-Box Support – Multiple draggable boxes with independent controls.
 
-Demo Screenshot (Replace with your actual image)
+🚀 How It Works
 
-🚀 Features
-✅ Real-time hand tracking
-✅ Adjust volume by moving fingers closer/apart
-✅ Visual volume bar & percentage display
-✅ Mute when fingers touch (distance < 50px)
-✅ FPS counter for performance monitoring
+1. Hand Detection & Landmark Tracking
+Uses HandTrackingModule (based on MediaPipe) to detect hand landmarks.
 
-🛠 Setup Guide
-Prerequisites
-Python 3.8+
+Tracks index (8) and middle (12) finger positions for pinch detection.
 
-Windows OS (required for pycaw audio control)
+2. Pinch Gesture Detection
+   
+Calculates the distance between index and middle fingers.
 
-Cross-Platform Compatibility for Hand Gesture Volume Control
-🖥️ OS Compatibility Overview
-Component	Windows	macOS	Linux	Notes
-Core Functionality (Hand Tracking)	✅ Yes	✅ Yes	✅ Yes	OpenCV & MediaPipe work on all platforms
-Volume Control	✅ Yes	❌ No	❌ No	pycaw only works on Windows
-Camera Access	✅ Yes	✅ Yes	✅ Yes	Requires webcam permissions
+If distance < PINCH_THRESHOLD (default: 35px), registers as a pinch.
 
-Webcam
+Uses debounce logic (DEBOUNCE_THRESHOLD = 5) to avoid accidental triggers.
 
-Installation
-Clone the repository:
+3. Dragging Logic
+When a pinch is detected inside a box:
 
+The box turns green (active state).
+
+The box moves with the average position of the two fingers + an offset for smooth dragging.
+
+On release, the box returns to its original color (purple).
+
+4. Visual Feedback
+Semi-transparent boxes (alpha = 80) for a modern UI feel.
+
+Red circle appears at the pinch point when dragging.
+
+Status text shows which box is currently active.
+
+🛠️ Code Structure
+DraggableBox Class
+Method	Description
+__init__(pos_center, size)	Initializes box position, size, and appearance.
+update(img, lm_list, ...)	Handles pinch detection, dragging logic, and position updates.
+draw(img)	Renders the box with transparency and outline.
+main() Function
+Initializes camera (1280x720 resolution).
+
+Creates multiple draggable boxes at predefined positions.
+
+Processes hand tracking and updates box positions in real time.
+
+Displays status (active box, pinch threshold).
+
+🔧 Usage
+1. Install Dependencies
 bash
 Copy
-git clone https://github.com/Abuhurera-coder/VolumeHandControl.git
-cd VolumeHandControl
-Install dependencies:
 
+pip install opencv-python numpy mediapipe
+
+3. Run the Program
 bash
 Copy
-pip install opencv-python mediapipe numpy pycaw comtypes
-Run the application:
 
-bash
-Copy
-python volume_hand_control.py
-👆 How It Works
-Show your hand to the webcam
+python drag_and_drop.py
 
-Increase volume: Move thumb and index finger apart
+5. Controls
 
-Decrease volume: Bring fingers closer
+Pinch inside a box to drag it.
 
-Mute: Touch thumb and index finger together
+Release fingers to drop the box.
 
-Gesture Demo (Add your gesture image here)
+Press 'q' to exit.
 
-⚙ Customization
-Adjust sensitivity: Modify [50, 300] in np.interp() for different finger distance ranges
+🎯 Possible Improvements
+🔹 Add collision detection between boxes.
+🔹 Implement snapping to a grid or other UI elements.
+🔹 Add touch gestures (double-tap to delete, swipe to rotate).
+🔹 Optimize performance for smoother dragging.
 
-Change colors: Edit RGB values in cv2 drawing functions
+📸 Demo Screenshot
+(Example of boxes being dragged with hand tracking)
 
-Camera resolution: Modify wCam, hCam values
-
-⚠ Troubleshooting
-Issue	Solution
-No volume control	Ensure you're on Windows (pycaw is Windows-only)
-Hand not detected	Check lighting and camera angle
-High CPU usage	Reduce camera resolution in code
-Module errors	Reinstall dependencies with pip install -r requirements.txt
-📂 Project Structure
-Copy
-VolumeHandControl/  
-├── volume_hand_control.py  # Main application  
-├── HandTrackingModule.py   # Hand detection module  
-├── requirements.txt        # Dependencies  
-└── README.md               # This guide  
-📜 License
-MIT License - Free for personal and commercial use
-
-🙏 Credits
-Developed by [Your Name]
-
-Powered by OpenCV, MediaPipe, and pycaw
-
-🌟 Star this repo if you find it useful!
-=======
-# VisualDragDrop
- VisualDragDrop is an intuitive interface that lets you manipulate on-screen elements using natural hand movements. Simply pinch and drag with your fingers to interact with objects—no touchscreen or mouse required.    Perfect for:   • Interactive installations   • Touchless kiosks   • Accessible computing   • Creative applications   
->>>>>>> 7a8055510c1aa544cecad7f496a7ed44b58c513f
+![image](https://github.com/user-attachments/assets/a11ae582-d54c-4075-8d70-6a45cafb12ac)
