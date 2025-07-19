@@ -77,3 +77,21 @@ if finger_distance < PINCH_THRESHOLD:  # Default: 35px
        DraggableBox([400, 300], [200, 200]),
        DraggableBox([800, 300], [200, 200])
    ]
+
+### Main Tracking Loop
+
+while True:
+    # Capture frame
+    success, img = cap.read()
+    img = cv2.flip(img, 1)  # Mirror display
+    # Detect hands
+    hands = detector.findHands(img, draw=False)
+    # Update all boxes
+    for box in boxes:
+        box.update(img, hands)
+        box.draw(img)
+    # Display FPS
+    cv2.putText(img, f"FPS: {int(fps)}", (10, 70), ...)  
+    # Exit on 'q'
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
