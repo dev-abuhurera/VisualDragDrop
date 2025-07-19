@@ -114,3 +114,12 @@ pip install opencv-python mediapipe numpy
 
 # Run application
 python drag_and_drop.py
+
+
+Controls:
+
+👌 Pinch gesture inside box to drag
+
+🖐️ Release to drop
+
+🅀 Press Q to quit
