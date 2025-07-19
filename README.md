@@ -104,3 +104,13 @@ while True:
     # Exit when 'q' is pressed
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
+
+```
+
+🏁 Getting Started
+bash
+# Install dependencies
+pip install opencv-python mediapipe numpy
+
+# Run application
+python drag_and_drop.py
