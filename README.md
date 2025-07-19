@@ -80,18 +80,27 @@ if finger_distance < PINCH_THRESHOLD:  # Default: 35px
 
 ### Main Tracking Loop
 
+
 while True:
-    # Capture frame
+    # Capture frame from webcam
     success, img = cap.read()
-    img = cv2.flip(img, 1)  # Mirror display
-    # Detect hands
+    img = cv2.flip(img, 1)  # Mirror display for intuitive movement
+    
+    # Hand detection (without drawing landmarks)
     hands = detector.findHands(img, draw=False)
-    # Update all boxes
+    
+    # Update and draw all draggable boxes
     for box in boxes:
-        box.update(img, hands)
-        box.draw(img)
-    # Display FPS
-    cv2.putText(img, f"FPS: {int(fps)}", (10, 70), ...)  
-    # Exit on 'q'
+        box.update(img, hands)  # Handle gestures and position
+        box.draw(img)           # Render with transparency
+    
+    # Display performance metrics
+    cv2.putText(img, f"FPS: {int(fps)}", (10, 70), 
+               cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 255), 3)
+    
+    # Show final frame
+    cv2.imshow("Hand-Controlled UI", img)
+    
+    # Exit when 'q' is pressed
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
