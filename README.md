@@ -80,7 +80,7 @@ if finger_distance < PINCH_THRESHOLD:  # Default: 35px
 
 ### Main Tracking Loop
 
-
+```python
 while True:
     # Capture frame from webcam
     success, img = cap.read()
