@@ -51,3 +51,29 @@ if finger_distance < PINCH_THRESHOLD:  # Default: 35px
   - <span style="color:purple">■</span> Purple = Ready
   - <span style="color:green">■</span> Green = Dragging
 - **Pinch point indicator** (red circle at contact point)
+
+
+## 🛠️ Technical Implementation
+
+### Core Classes
+
+#### `DraggableBox` Class
+
+| Method       | Parameters            | Functionality                          |
+|--------------|-----------------------|----------------------------------------|
+| `__init__()` | `pos_center`, `size`  | Initializes position, size, and visual properties |
+| `update()`   | `img`, `lm_list`      | Handles pinch detection and dragging logic |
+| `draw()`     | `img`                 | Renders box with transparency and border |
+
+### Main Process Flow
+
+1. **Camera Setup**  
+   - Initializes video capture at 1280×720 resolution  
+   - Configures frame rate and exposure settings  
+
+2. **UI Initialization**  
+   
+   boxes = [
+       DraggableBox([400, 300], [200, 200]),
+       DraggableBox([800, 300], [200, 200])
+   ]
