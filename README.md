@@ -1,5 +1,4 @@
 # 🖐️ Visual Drag-and-Drop with Hand Tracking  
-*  
 
 ## 📌 Project Overview  
 This project implements **real-time hand gesture-based drag-and-drop** using OpenCV and MediaPipe. Users can pinch and drag semi-transparent UI boxes with visual feedback.  
